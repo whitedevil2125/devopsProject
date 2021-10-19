@@ -6,7 +6,7 @@ Maintainer Anand
 
 #Copy Application Files
 RUN rm -rf /var/www/html/*
-COPY website /var/www/html/
+COPY /opt/source_code_git/project/php_site/website /var/www/html/
 
 #Open port 80
 EXPOSE 8080
