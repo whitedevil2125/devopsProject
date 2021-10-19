@@ -10,7 +10,7 @@
   - name: create docker image using PHP file
     command: docker build -t anandproj:PHPSite .
     args:
-      chdir: /opt/source_code_git/project
+      chdir: /opt/source_code_git/project/php_site
 
   - name: create tag to image
     command: docker tag anandproj:PHPSite whitedevil2125/anandproj:PHPSite
