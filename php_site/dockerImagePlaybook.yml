@@ -1,5 +1,5 @@
 ---
-- hosts: workernode
+- hosts: localhost
   become: true
   become_user: root
 
@@ -7,20 +7,13 @@
   - name: Start docker
     service: name=docker state=started
 
-  - name: create docker image using war file
-    command: docker build -t aanandproj:PHPSite .
+  - name: create docker image using PHP file
+    command: docker build -t anandproj:PHPSite .
     args:
       chdir: /opt/source_code_git/project
 
   - name: create tag to image
-    command: docker tag aanandproj:PHPSite whitedevil2125/aanandproj:PHPSite
+    command: docker tag anandproj:PHPSite whitedevil2125/anandproj:PHPSite
 
-  - name: loginto docker
-    command: docker login --username whitedevil2125 --password Training@21
-
-  - name: push image on to dockerhub
-    command: docker push whitedevil2125/aanandproj:PHPSite
-
-  - name: remove docker images form ansible server
-    command: docker rmi aanandproj:PHPSite whitedevil2125/aanandproj:PHPSite
-    ignore_errors: yes
+  - name: Deploy Image for PHP in Test server
+    command: docker run -d -p 8686:8000 anandproj:PHPSite
