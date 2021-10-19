@@ -16,4 +16,4 @@
     command: docker tag anandproj:PHPSite whitedevil2125/anandproj:PHPSite
 
   - name: Deploy Image for PHP in Test server
-    command: docker run -d -p 8683:8000 anandproj:PHPSite
+    command: docker run -d -p 8600:8000 anandproj:PHPSite
