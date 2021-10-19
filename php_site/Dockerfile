@@ -1,0 +1,11 @@
+FROM devopsedu/webapp:latest
+
+Maintainer Anand
+
+COPY website /var/www/html/
+
+RUN apt update && \
+    apt install -y php
+
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
+
