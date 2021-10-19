@@ -1,0 +1,26 @@
+---
+- hosts: workernode
+  become: true
+  become_user: root
+
+  tasks:
+  - name: Start docker
+    service: name=docker state=started
+
+  - name: create docker image using war file
+    command: docker build -t aanandproj:PHPSite .
+    args:
+      chdir: /opt/source_code_git/project
+
+  - name: create tag to image
+    command: docker tag aanandproj:PHPSite whitedevil2125/aanandproj:PHPSite
+
+  - name: loginto docker
+    command: docker login --username whitedevil2125 --password Training@21
+
+  - name: push image on to dockerhub
+    command: docker push whitedevil2125/aanandproj:PHPSite
+
+  - name: remove docker images form ansible server
+    command: docker rmi aanandproj:PHPSite whitedevil2125/aanandproj:PHPSite
+    ignore_errors: yes
